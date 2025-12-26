@@ -9,7 +9,7 @@ from hvsrpy.data_wrangler import _read_mseed
 plt.style.use(hvsrpy.HVSRPY_MPL_STYLE)
 
 #####
-srecords = _read_mseed("100_16hr.mseed",degrees_from_north=0)
+srecords = _read_mseed("../data_iris_overnight/100_16hr.mseed",degrees_from_north=0)
 # st=read
 # fnames = [["2E.100.1.mseed", "2E.100.2.mseed", "2E.100.Z.mseed"]]
 #
@@ -23,7 +23,7 @@ srecords = _read_mseed("100_16hr.mseed",degrees_from_north=0)
 ###
 preprocessing_settings = hvsrpy.settings.HvsrPreProcessingSettings()
 preprocessing_settings.detrend = "linear"
-preprocessing_settings.window_length_in_seconds = 100
+preprocessing_settings.window_length_in_seconds = 80
 preprocessing_settings.orient_to_degrees_from_north = 0.0
 preprocessing_settings.filter_corner_frequencies_in_hz = (None, None)
 preprocessing_settings.ignore_dissimilar_time_step_warning = False
@@ -54,4 +54,5 @@ hvsrpy.summarize_hvsr_statistics(hvsr)
 (fig, ax) = hvsrpy.plot_single_panel_hvsr_curves(hvsr,)
 ax.get_legend().remove()
 ax.legend(loc="center left", bbox_to_anchor=(1, 0.5))
+# plt.savefig('station.png',dpi=400,bbox_inches='tight', pad_inches=0.1)
 plt.show()
